@@ -195,20 +195,16 @@ namespace DownloadManager.Library.Helper
                         var items = new List<AppInfo>();
                         while (reader.Read())
                         {
-                            var tempValid = reader["applinkValid"] as int?;
                             var item = new AppInfo
                             {
-                                Id = (reader["Id"] as int?).Value,
+                                Id = reader.GetInt32("Id"),
                                 LastUpdate = reader["LastUpdate"] as DateTime?,
-                                Link = reader["AppLink"] as string,
-                                Name = reader["AppName"] as string,
-                                WikiLink = reader["WikiEntry"] as string,
-                                WikiVersion = reader["WikiVersion"] as string
+                                Link = reader.GetString("AppLink"),
+                                Name = reader.GetString("AppName"),
+                                WikiLink = reader.GetString("WikiEntry"),
+                                WikiVersion = reader.GetString("WikiVersion"),
+                                LinkValid = reader.GetBoolean("AppLinkValid")
                             };
-                            if (tempValid.HasValue)
-                            {
-                                item.LinkValid = tempValid.Value > 0;
-                            }
                             items.Add(item);
                         }
                         return items;
