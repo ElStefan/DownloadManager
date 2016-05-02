@@ -26,8 +26,3 @@ You can select all applications you want, and tell the client to load and instal
 ##Feedback
 
  - Suggestions for improvement are always welcome!
-
-##Coming soon
-
- - Service setup
- - Client
