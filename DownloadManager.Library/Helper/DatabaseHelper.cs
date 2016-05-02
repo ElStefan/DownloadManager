@@ -17,15 +17,15 @@ namespace DownloadManager.Library.Helper
             var result = new RequestResult { Success = false };
             if (app == null)
             {
-                Log.Error("Insert - Invalid app object");
-                result.Message = "Invalid app object";
+                Log.Error("Insert - Invalid item");
+                result.Message = "Invalid item";
                 return result;
             }
             var items = GetAll();
             var item = items.FirstOrDefault(o => o.Name == app.Name && o.Link == app.Link);
             if (item != null)
             {
-                Log.Error("Insert - Database item already exists");
+                Log.Error("Insert - Item already exists");
                 result.Message = "App already exists";
                 return result;
             }
@@ -61,7 +61,7 @@ namespace DownloadManager.Library.Helper
                 using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["MySql"].ConnectionString))
                 {
                     connection.Open();
-                    var query = "INSERT INTO appInfos (app_name,app_link,lastupdate,wikiEntry,applinkValid) VALUES (@app_name,@app_link,null,@wikiEntry,@applinkValid);";
+                    var query = "INSERT INTO appinfo (AppName,AppLink,WikiEntry,AppLinkValid) VALUES (@AppName,@AppLink,@WikiEntry,@AppLinkValid);";
                     using (var command = new MySqlCommand(query, connection))
                     {
                         var linkValid = 0;
@@ -69,10 +69,10 @@ namespace DownloadManager.Library.Helper
                         {
                             linkValid = 1;
                         }
-                        command.Parameters.AddWithValue("app_name", app.Name);
-                        command.Parameters.AddWithValue("app_link", app.Link);
-                        command.Parameters.AddWithValue("wikiEntry", app.WikiLink);
-                        command.Parameters.AddWithValue("applinkValid", linkValid);
+                        command.Parameters.AddWithValue("AppName", app.Name);
+                        command.Parameters.AddWithValue("AppLink", app.Link);
+                        command.Parameters.AddWithValue("WikiEntry", app.WikiLink);
+                        command.Parameters.AddWithValue("AppLinkValid", linkValid);
                         var affected = command.ExecuteNonQuery();
                         if (affected == 1)
                         {
@@ -98,8 +98,8 @@ namespace DownloadManager.Library.Helper
             var result = new RequestResult { Success = false };
             if (app == null)
             {
-                Log.Error("Update - Invalid app object");
-                result.Message = "Invalid app object";
+                Log.Error("Update - Invalid item");
+                result.Message = "Invalid item";
                 return result;
             }
 
@@ -146,7 +146,7 @@ namespace DownloadManager.Library.Helper
                 using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["MySql"].ConnectionString))
                 {
                     connection.Open();
-                    var query = "UPDATE appInfos SET app_name=@app_name, app_link=@app_link, lastupdate=@lastupdate, wikiEntry=@wikiEntry, wikiVersion=@wikiVersion, applinkValid=@applinkValid WHERE id=@id";
+                    var query = "UPDATE appinfo SET AppName=@AppName, AppLink=@AppLink, LastUpdate=@LastUpdate, WikiEntry=@WikiEntry, WikiVersion=@WikiVersion, AppLinkValid=@AppLinkValid WHERE Id=@Id";
                     using (var command = new MySqlCommand(query, connection))
                     {
                         var linkValid = 0;
@@ -154,13 +154,13 @@ namespace DownloadManager.Library.Helper
                         {
                             linkValid = 1;
                         }
-                        command.Parameters.AddWithValue("id", app.Id);
-                        command.Parameters.AddWithValue("app_link", app.Link);
-                        command.Parameters.AddWithValue("applinkValid", linkValid);
-                        command.Parameters.AddWithValue("app_name", app.Name);
-                        command.Parameters.AddWithValue("lastupdate", DateTime.Now);
-                        command.Parameters.AddWithValue("wikiEntry", app.WikiLink);
-                        command.Parameters.AddWithValue("wikiVersion", app.WikiVersion);
+                        command.Parameters.AddWithValue("Id", app.Id);
+                        command.Parameters.AddWithValue("AppLink", app.Link);
+                        command.Parameters.AddWithValue("AppLinkValid", linkValid);
+                        command.Parameters.AddWithValue("AppName", app.Name);
+                        command.Parameters.AddWithValue("LastUpdate", DateTime.Now);
+                        command.Parameters.AddWithValue("WikiEntry", app.WikiLink);
+                        command.Parameters.AddWithValue("WikiVersion", app.WikiVersion);
                         var affected = command.ExecuteNonQuery();
                         if (affected == 1)
                         {
@@ -188,7 +188,7 @@ namespace DownloadManager.Library.Helper
                 using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["MySql"].ConnectionString))
                 {
                     connection.Open();
-                    var query = "SELECT id, app_name, app_link, applinkValid, lastupdate, wikiEntry, wikiVersion FROM appInfos";
+                    var query = "SELECT * FROM appinfo";
                     using (var command = new MySqlCommand(query, connection))
                     {
                         var reader = command.ExecuteReader();
@@ -198,12 +198,12 @@ namespace DownloadManager.Library.Helper
                             var tempValid = reader["applinkValid"] as int?;
                             var item = new AppInfo
                             {
-                                Id = (reader["id"] as int?).Value,
-                                LastUpdate = reader["lastupdate"] as DateTime?,
-                                Link = reader["app_link"] as string,
-                                Name = reader["app_name"] as string,
-                                WikiLink = reader["wikiEntry"] as string,
-                                WikiVersion = reader["wikiVersion"] as string
+                                Id = (reader["Id"] as int?).Value,
+                                LastUpdate = reader["LastUpdate"] as DateTime?,
+                                Link = reader["AppLink"] as string,
+                                Name = reader["AppName"] as string,
+                                WikiLink = reader["WikiEntry"] as string,
+                                WikiVersion = reader["WikiVersion"] as string
                             };
                             if (tempValid.HasValue)
                             {
@@ -237,10 +237,10 @@ namespace DownloadManager.Library.Helper
                 using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["MySql"].ConnectionString))
                 {
                     connection.Open();
-                    var query = "DELETE FROM appInfos WHERE id=@id";
+                    var query = "DELETE FROM appinfo WHERE Id=@Id";
                     using (var command = new MySqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("id", id);
+                        command.Parameters.AddWithValue("Id", id);
                         var affected = command.ExecuteNonQuery();
                         if (affected == 1)
                         {
