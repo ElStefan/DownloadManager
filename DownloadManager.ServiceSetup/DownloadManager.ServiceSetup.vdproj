@@ -100,19 +100,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9C6B27FCD4359A61A9C04AEF7A6CA2D5"
+        "OwnerKey" = "8:_FAF653BF300F45F197605502D01F105D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_848D1E3DF5326E2C3C2FEF9DF020DAD7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FAF653BF300F45F197605502D01F105D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -145,6 +139,12 @@
         "OwnerKey" = "8:_8D661FDFEA9C63D388CB2313203C086C"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9C6B27FCD4359A61A9C04AEF7A6CA2D5"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -163,6 +163,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -179,6 +195,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -537,8 +569,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DownloadManager Service"
-        "ProductCode" = "8:{A1549ADE-E127-42D4-BD9E-CDEFBE73E181}"
-        "PackageCode" = "8:{17B3E6DA-78C7-42D1-9F74-D89DDB973DF6}"
+        "ProductCode" = "8:{778025A0-1CE6-44F2-9074-B47890320CF4}"
+        "PackageCode" = "8:{1342EB00-2628-4D6D-A419-093630D33CD1}"
         "UpgradeCode" = "8:{30C4CB43-861D-4859-ACDD-6920D1C235D8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
