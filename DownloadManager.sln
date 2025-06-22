@@ -5,13 +5,9 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadManager.Library", "DownloadManager.Library\DownloadManager.Library.csproj", "{BB9CB244-6BA0-4A57-8467-96B13B071B0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadManager.ServiceTestConsole", "DownloadManager.ServiceTestConsole\DownloadManager.ServiceTestConsole.csproj", "{A61F2710-B4F4-4C81-93B4-10CDC4F70388}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadManager.Server", "DownloadManager.Server\DownloadManager.Server.csproj", "{50057084-6E4A-4B82-BBA4-7636076BB028}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadManager.Client", "DownloadManager.Client\DownloadManager.Client.csproj", "{51666F44-FE65-4475-B694-1F95CFDE85A4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadManager.Service", "DownloadManager.Service\DownloadManager.Service.csproj", "{7C2B10D1-10F6-40DB-A06B-55041768CA6C}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DownloadManager.ServiceSetup", "DownloadManager.ServiceSetup\DownloadManager.ServiceSetup.vdproj", "{D70D36D4-3781-457B-839C-406AA364F9AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadManager.Client", "DownloadManager.Client\DownloadManager.Client.csproj", "{2C9D0234-ED6D-41EA-A9FE-81B22691C372}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,21 +19,15 @@ Global
 		{BB9CB244-6BA0-4A57-8467-96B13B071B0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB9CB244-6BA0-4A57-8467-96B13B071B0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB9CB244-6BA0-4A57-8467-96B13B071B0B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A61F2710-B4F4-4C81-93B4-10CDC4F70388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A61F2710-B4F4-4C81-93B4-10CDC4F70388}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A61F2710-B4F4-4C81-93B4-10CDC4F70388}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A61F2710-B4F4-4C81-93B4-10CDC4F70388}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51666F44-FE65-4475-B694-1F95CFDE85A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51666F44-FE65-4475-B694-1F95CFDE85A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51666F44-FE65-4475-B694-1F95CFDE85A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51666F44-FE65-4475-B694-1F95CFDE85A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C2B10D1-10F6-40DB-A06B-55041768CA6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C2B10D1-10F6-40DB-A06B-55041768CA6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C2B10D1-10F6-40DB-A06B-55041768CA6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C2B10D1-10F6-40DB-A06B-55041768CA6C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D70D36D4-3781-457B-839C-406AA364F9AE}.Debug|Any CPU.ActiveCfg = Debug
-		{D70D36D4-3781-457B-839C-406AA364F9AE}.Release|Any CPU.ActiveCfg = Release
-	EndGlobalSection
+                {50057084-6E4A-4B82-BBA4-7636076BB028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+                {50057084-6E4A-4B82-BBA4-7636076BB028}.Debug|Any CPU.Build.0 = Debug|Any CPU
+                {50057084-6E4A-4B82-BBA4-7636076BB028}.Release|Any CPU.ActiveCfg = Release|Any CPU
+               {50057084-6E4A-4B82-BBA4-7636076BB028}.Release|Any CPU.Build.0 = Release|Any CPU
+                {2C9D0234-ED6D-41EA-A9FE-81B22691C372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+                {2C9D0234-ED6D-41EA-A9FE-81B22691C372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+                {2C9D0234-ED6D-41EA-A9FE-81B22691C372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+                {2C9D0234-ED6D-41EA-A9FE-81B22691C372}.Release|Any CPU.Build.0 = Release|Any CPU
+        EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

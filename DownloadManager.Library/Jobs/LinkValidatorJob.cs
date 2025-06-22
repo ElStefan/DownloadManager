@@ -1,5 +1,5 @@
 ﻿using DownloadManager.Library.Helper;
-using log4net;
+using Serilog;
 using Quartz;
 using System;
 using System.Collections.Generic;
@@ -12,14 +12,14 @@ namespace DownloadManager.Library.Jobs
     public class LinkValidatorJob : IJob
     {
 
-        private static readonly ILog Log = LogManager.GetLogger(typeof(LinkValidatorJob));
+        private static readonly ILogger Log = Log.ForContext(typeof(LinkValidatorJob));
 
-        public void Execute(IJobExecutionContext context)
+        public async Task Execute(IJobExecutionContext context)
         {
             Log.Debug("Execute - Start");
             try
             {
-                this.CheckDownloadLinks();
+                await Task.Run(CheckDownloadLinks);
             }
             catch (Exception exception)
             {
@@ -44,16 +44,16 @@ namespace DownloadManager.Library.Jobs
                 var isWorking = LinkHelper.ValidateApplication(app.Link);
                 if (!isWorking)
                 {
-                    Log.ErrorFormat("CheckDownloadLinks - Downloadlink for '{0}' is invalid: '{1}'", app.Name, app.Link);
+                    Log.Error($"CheckDownloadLinks - Downloadlink for '{app.Name}' is invalid: '{app.Link}'");
                     app.LinkValid = false;
                     DatabaseHelper.Update(app, true);
                     continue;
                 }
-                Log.DebugFormat("CheckDownloadLinks - Downloadlink for '{0}' is valid", app.Name);
+                Log.Debug($"CheckDownloadLinks - Downloadlink for '{app.Name}' is valid");
 
                 if (!app.LinkValid)
                 {
-                    Log.DebugFormat("CheckDownloadLinks - Updating validity for '{0}', was invalid", app.Name);
+                    Log.Debug($"CheckDownloadLinks - Updating validity for '{app.Name}', was invalid");
                     app.LinkValid = true;
                     DatabaseHelper.Update(app, true);
                 }

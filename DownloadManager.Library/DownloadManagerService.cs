@@ -1,6 +1,6 @@
 ﻿using DownloadManager.Library.Helper;
 using DownloadManager.Library.Models;
-using log4net;
+using Serilog;
 using System;
 using System.Collections.Generic;
 
@@ -9,7 +9,7 @@ namespace DownloadManager.Library
     public class DownloadManagerService : IDownloadManagerService
     {
 
-        private static readonly ILog Log = LogManager.GetLogger(typeof(DownloadManagerService));
+        private static readonly ILogger Log = Log.ForContext(typeof(DownloadManagerService));
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);

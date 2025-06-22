@@ -1,9 +1,12 @@
 # DownloadManager
 
-##What is that?
 
- - The *DownloadManager* is a wcf service that manages urls of applications on a _mysql database_.
+##What is that?
+This version targets **.NET 8** and uses **gRPC** with Kestrel for hosting.
+
+ - The *DownloadManager* is a gRPC service that manages urls of applications on a _mysql database_.
  - It's supposed to be running on a server in the local network, to give clients the requested application in a minimum of time.
+ - A Windows Forms client written for **.NET 8** consumes the gRPC API and allows managing and downloading the apps.
 
 ##Why?
 

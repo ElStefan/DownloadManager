@@ -1,5 +1,5 @@
 ﻿using DownloadManager.Library.Models;
-using log4net;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +10,7 @@ namespace DownloadManager.Library.Helper
 {
     public static class FileHelper
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(FileHelper));
+        private static readonly ILogger Log = Log.ForContext(typeof(FileHelper));
 
         public static byte[] GetBinaries(int id)
         {
@@ -106,7 +106,7 @@ namespace DownloadManager.Library.Helper
             var bytes = GetBinaries(id);
             if (bytes == null)
             {
-                Log.ErrorFormat("CreateCachedFile - Cannot cache item id: {0}", id);
+                Log.Error($"CreateCachedFile - Cannot cache item id: {id}");
                 result.Message = "Cannot cache item";
                 return result;
             }

@@ -1,4 +1,4 @@
-﻿using log4net;
+﻿using Serilog;
 using System;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -7,7 +7,7 @@ namespace DownloadManager.Library.Helper
 {
     public static class LinkHelper
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(LinkHelper));
+        private static readonly ILogger Log = Log.ForContext(typeof(LinkHelper));
 
         public static bool ValidateApplication(string link)
         {

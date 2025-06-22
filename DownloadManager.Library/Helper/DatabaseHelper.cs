@@ -1,5 +1,5 @@
 ﻿using DownloadManager.Library.Models;
-using log4net;
+using Serilog;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace DownloadManager.Library.Helper
 {
     public class DatabaseHelper
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(DatabaseHelper));
+        private static readonly ILogger Log = Log.ForContext(typeof(DatabaseHelper));
 
         public static RequestResult Insert(AppInfo app)
         {

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +12,6 @@ namespace DownloadManager.Library.Core
 {
     public class SystemCore
     {
-        private ServiceHost _serviceHost;
         private IScheduler _scheduler;
 
         #region Singleton
@@ -36,11 +34,8 @@ namespace DownloadManager.Library.Core
 
         public bool Start()
         {
-            this._scheduler = StdSchedulerFactory.GetDefaultScheduler();
+            this._scheduler = StdSchedulerFactory.GetDefaultScheduler().Result;
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
-            this._serviceHost = new ServiceHost(typeof(DownloadManagerService));
-
-            this._serviceHost.Open();
 
             var runTime = DateBuilder.EvenHourDateAfterNow();
 
@@ -80,7 +75,6 @@ namespace DownloadManager.Library.Core
         public bool Stop()
         {
             this._scheduler.Shutdown();
-            this._serviceHost.Close();
             return true;
         }
     }
