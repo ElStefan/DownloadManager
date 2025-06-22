@@ -1,5 +1,5 @@
 ﻿using DownloadManager.Library.Helper;
-using log4net;
+using Serilog;
 using Quartz;
 using System;
 using System.Collections.Generic;
@@ -11,14 +11,14 @@ namespace DownloadManager.Library.Jobs
 {
     public class WikiUpdateJob : IJob
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof(WikiUpdateJob));
+        private static readonly ILogger Log = Log.ForContext(typeof(WikiUpdateJob));
 
-        public void Execute(IJobExecutionContext context)
+        public async Task Execute(IJobExecutionContext context)
         {
             Log.Debug("Execute - Start");
             try
             {
-                this.CheckVersions();
+                await Task.Run(CheckVersions);
             }
             catch (Exception exception)
             {
@@ -43,10 +43,10 @@ namespace DownloadManager.Library.Jobs
                 var version = LinkHelper.GetNewestVersion(app.WikiLink);
                 if (version.Equals(app.WikiVersion, StringComparison.OrdinalIgnoreCase))
                 {
-                    Log.DebugFormat("CheckVersions - No update found for '{0}' - Version: '{1}'", app.Name, app.WikiVersion);
+                    Log.Debug($"CheckVersions - No update found for '{app.Name}' - Version: '{app.WikiVersion}'");
                     continue;
                 }
-                Log.DebugFormat("CheckVersions - Update found for '{0}' - Change: '{1}' => '{2}'", app.Name, app.WikiVersion, version);
+                Log.Debug($"CheckVersions - Update found for '{app.Name}' - Change: '{app.WikiVersion}' => '{version}'");
                 app.WikiVersion = version;
                 DatabaseHelper.Update(app, false);
             }

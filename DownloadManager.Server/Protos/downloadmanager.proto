@@ -1,0 +1,49 @@
+syntax = "proto3";
+option csharp_namespace = "DownloadManager.Server";
+package download;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+message AppInfo {
+  int32 id = 1;
+  string name = 2;
+  string link = 3;
+  bool linkValid = 4;
+  google.protobuf.Timestamp lastUpdate = 5;
+  string wikiLink = 6;
+  string wikiVersion = 7;
+}
+
+message RequestResult {
+  string message = 1;
+  bool success = 2;
+}
+
+message AppList {
+  repeated AppInfo apps = 1;
+}
+
+message AppId {
+  int32 id = 1;
+}
+
+message IdList {
+  repeated int32 ids = 1;
+}
+
+message BinaryData {
+  bytes data = 1;
+}
+
+service DownloadManager {
+  rpc GetApps (google.protobuf.Empty) returns (AppList);
+  rpc Add (AppInfo) returns (RequestResult);
+  rpc Update (AppInfo) returns (RequestResult);
+  rpc Remove (AppId) returns (RequestResult);
+  rpc GetBinaries (AppId) returns (BinaryData);
+  rpc RemoveCachedFile (AppId) returns (RequestResult);
+  rpc ClearAllCachedFiles (google.protobuf.Empty) returns (RequestResult);
+  rpc CreateCachedFile (AppId) returns (RequestResult);
+  rpc CreateCachedFiles (IdList) returns (RequestResult);
+}

@@ -1,22 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace DownloadManager.Client
 {
-    static class Program
+    internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Client());
+            ApplicationConfiguration.Initialize();
+
+            using var host = Host.CreateDefaultBuilder()
+                .UseWindowsFormsLifetime()
+                .UseSerilog((ctx, config) => config.WriteTo.Console())
+                .ConfigureServices(services =>
+                {
+                    services.AddSingleton<MainForm>();
+                })
+                .Build();
+
+            var form = host.Services.GetRequiredService<MainForm>();
+            Application.Run(form);
         }
     }
 }

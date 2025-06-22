@@ -1,5 +1,5 @@
 ﻿using DownloadManager.Library.Core;
-using log4net;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace DownloadManager.Library
     public static class Controller
     {
 
-        private static readonly ILog Log = LogManager.GetLogger(typeof(Controller));
+        private static readonly ILogger Log = Log.ForContext(typeof(Controller));
         public static bool Start()
         {
             Log.Debug("DownloadManager - Service starting");
